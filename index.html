@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation | Nagen & Kuga</title>
     <!-- Google Fonts for Elegant Typography -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         /* --- BASE STYLES & AUSPICIOUS INDIAN TRADITIONAL THEME --- */
         :root {
-            --bg-dark: #120205; /* Sacred Deep Maroon */
+            --bg-dark: #120205; /* Sacred Deep Maroon / Shubh Sindoor Red Black */
             --bg-card: #1c050a; /* Rich Maroon-Onyx Card Background */
-            --secondary-color: #F1C40F; /* Auspicious Yellow Gold Accent */
+            --secondary-color: #F1C40F; /* Auspicious Deep Yellow Gold Accent */
             --text-light: #fefcf5; /* Warm Ivory Text */
             --text-muted: #c7b3b6;
             --border-gold: rgba(241, 196, 15, 0.4);
@@ -47,8 +47,9 @@
 
         /* --- HERO SECTION --- */
         .hero {
+            /* Grand Indian Wedding Lights/Mandap Decor Background Asset */
             background: linear-gradient(rgba(18, 2, 5, 0.8), rgba(18, 2, 5, 0.95)), 
-                        url('https://unsplash.com') center/cover no-repeat;
+                        url('https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -71,6 +72,7 @@
             position: relative;
         }
 
+        /* Clean, Elegant Ornamental Corner Cornering Line Art Styles instead of symbols */
         .hero-border::before, .hero-border::after {
             content: '';
             position: absolute;
@@ -249,66 +251,139 @@
         }
 
         .event-card:hover .event-img {
-            opacity: 1;
+            opacity: 0.85;
+        }
+
+        .event-content {
+            padding: 35px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .event-content h3 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(241, 196, 15, 0.3);
+            padding-bottom: 15px;
+            letter-spacing: 1px;
         }
 
         .event-details {
-            padding: 25px;
-            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--text-light);
         }
 
-        .event-details h3 {
+        .event-details strong {
             color: var(--secondary-color);
-            font-size: 1.6rem;
-            margin-bottom: 10px;
+            font-weight: 500;
         }
 
-        /* --- AUDIO PLAYER BUTTON CONTROLS --- */
+        /* --- AUDIO PLAYER FLOATING BUTTON --- */
         .audio-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: var(--secondary-color);
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--secondary-color);
             color: #120205;
-            border: none;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 999;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: 2px solid #120205;
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1);
+        }
+
+        .audio-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(241, 196, 15, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #090103;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(241, 196, 15, 0.2);
+            margin-top: 80px;
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .countdown-container {
+                gap: 10px;
+            }
+            .countdown-box {
+                min-width: 75px;
+                padding: 12px;
+            }
+            .countdown-box span {
+                font-size: 1.9rem;
+            }
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            .audio-control {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ELEMEN AUDIO -->
-    <audio id="wedding-music" loop autoplay>
-        <source src="https://soundhelix.com" type="audio/mpeg">
-        Your browser does not support the audio element.
+    <!-- MUSIC AUDIO ELEMENT -->
+    <!-- You can change this link to your own background track URL if needed -->
+    <audio id="weddingMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Butang Kawalan Muzik Manual -->
-    <button class="audio-control" id="audio-toggle">🎵</button>
+    <!-- FLOATING MUSIC BUTTON -->
+    <div class="audio-control" id="musicBtn" onclick="toggleMusic()">♫</div>
 
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-border">
-            <h3>The Wedding Invitation</h3>
-            <h1>Nagen & Kuga</h1>
-            <p>Together with their families, invite you to share in their joy as they celebrate their marriage.</p>
-            <a href="#events" class="btn">View Events</a>
+            <h3>Welcome to our Celebration</h3>
+            <h1>Nagen &amp; Kuga</h1>
+            <p>We invite you to share in our joy as we celebrate the sacred beginning of our life together.</p>
+            <a href="#events" class="btn">Auspicious Schedule</a>
         </div>
     </section>
 
     <!-- COUNTDOWN SECTION -->
-    <section class="countdown-section">
-        <h2>The Countdown Begins</h2>
-        <div class="countdown-container">
+    <div class="countdown-section">
+        <h2>Counting Down to Shubh Muhurtham</h2>
+        <div class="countdown-container" id="countdown">
             <div class="countdown-box">
                 <span id="days">00</span>
                 <label>Days</label>
@@ -318,77 +393,89 @@
                 <label>Hours</label>
             </div>
             <div class="countdown-box">
-<!-- EVENTS SECTION -->
+                <span id="minutes">00</span>
+                <label>Minutes</label>
+            </div>
+            <div class="countdown-box">
+                <span id="seconds">00</span>
+                <label>Seconds</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVENTS SECTION -->
     <section class="container" id="events">
-        <h2 class="section-title">Wedding Events</h2>
-        <p class="section-subtitle">Join us for the celebrations</p>
-
+        <h2 class="section-title">Ceremonies & Events</h2>
+        <div class="section-subtitle">Groom's Side Invitation</div>
+        
         <div class="events-grid">
-            <!-- Kad 1: Muhurthakaal -->
+            <!-- 1ST NALUNGU -->
             <div class="event-card">
-                <img src="https://unsplash.com" alt="Muhurthakaal Ceremony" class="event-img">
-                <div class="event-details">
-                    <h3>Muhurthakaal</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Traditional auspicious beginning ceremony to bless the wedding site and preparations.</p>
+                <!-- Indian Wedding Celebration Ritual Image -->
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=600&auto=format&fit=crop" alt="Indian Wedding Setup" class="event-img">
+                <div class="event-content">
+                    <div>
+                        <h3>1st Nalungu</h3>
+                        <div class="event-details">
+                            <p style="color: var(--secondary-color); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">with Mukurthakaal</p>
+                            <p><strong>Date:</strong> Friday, 3rd July 2026</p>
+                            <p><strong>Time:</strong> 5:30 PM Onwards</p>
+                            <p><strong>Venue:</strong> Groom's Residence,<br>77, Taman Permai, Jalan Kurau 2,<br>70200 Seremban, Negeri Sembilan.</p>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=77,+Taman+Permai,+Jalan+Kurau+2,+Seremban" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">Get Directions</a>
                 </div>
             </div>
 
-            <!-- Kad 2: Seer Thathu -->
+            <!-- 2ND DAY NALUNGU -->
             <div class="event-card">
-                <img src="https://unsplash.com" alt="Seer Thathu Ceremony" class="event-img">
-                <div class="event-details">
-                    <h3>Seer Thathu</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Presentation of auspicious gifts, sweets, and ceremonial plates from the family.</p>
+                <!-- Traditional Indian Brass Lamp Decor Image -->
+                <img src="https://images.unsplash.com/photo-1545232979-8bf34eb9757b?q=80&w=600&auto=format&fit=crop" alt="Indian Traditional Decor" class="event-img">
+                <div class="event-content">
+                    <div>
+                        <h3>2nd Day Nalungu</h3>
+                        <div class="event-details">
+                            <p style="color: transparent; font-weight: 500; margin-bottom: 12px; text-transform: uppercase;">Placeholder</p>
+                            <p><strong>Date:</strong> Saturday, 4th July 2026</p>
+                            <p><strong>Time:</strong> 4:30 PM Onwards</p>
+                            <p><strong>Venue:</strong> Groom's Residence,<br>77, Taman Permai, Jalan Kurau 2,<br>70200 Seremban, Negeri Sembilan.</p>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=77,+Taman+Permai,+Jalan+Kurau+2,+Seremban" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">Get Directions</a>
                 </div>
             </div>
 
-            <!-- Kad 3: Indian Wedding -->
+            <!-- WEDDING CEREMONY (MUHURTHAM) -->
             <div class="event-card">
-                <img src="https://unsplash.com" alt="Indian Wedding Ceremony" class="event-img">
-                <div class="event-details">
-                    <h3>Indian Wedding</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">The grand traditional marriage rituals, Mangalyam ceremony, and exchange of garlands.</p>
+                <!-- Indian Wedding Garlands / Flower Mandap Design -->
+                <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=600&auto=format&fit=crop" alt="Indian Mandap Ceremony" class="event-img">
+                <div class="event-content">
+                    <div>
+                        <h3>The Wedding</h3>
+                        <div class="event-details">
+                            <p style="color: var(--secondary-color); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Muhurtham</p>
+                            <p><strong>Date:</strong> Sunday, 5th July 2026</p>
+                            <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
+                            <p><strong>Venue:</strong> Arulmigu Sri Muthu Mariamman Temple,<br>Taman Bukit Kepayang 1,<br>70200 Seremban, Negeri Sembilan.</p>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Arulmigu+Sri+Muthu+Mariamman+Temple+Taman+Bukit+Kepayang+Seremban" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">View Temple Location</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- JAVASCRIPT FOR AUDIO AUTOPLAY & COUNTDOWN -->
+    <!-- FOOTER -->
+    <footer>
+        <p>May all things be auspicious. &copy; 2026 Nagen &amp; Kuga's Wedding.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
     <script>
-        // --- LOGIK AUDIO (AUTOPLAY) ---
-        const music = document.getElementById('wedding-music');
-        const audioBtn = document.getElementById('audio-toggle');
+        // COUNTDOWN TIMER TARGET (Wedding Day: July 5th, 2026 at 10:00 AM)
+        const weddingDate = new Date("Jul 5, 2026 10:00:00").getTime();
 
-        function triggerAutoplay() {
-            music.play().then(() => {
-                audioBtn.textContent = "🎵";
-                document.removeEventListener('click', triggerAutoplay);
-                document.removeEventListener('touchstart', triggerAutoplay);
-                document.removeEventListener('scroll', triggerAutoplay);
-            }).catch(error => {
-                console.log("Autoplay blocked. Waiting for interaction.");
-            });
-        }
-
-        document.addEventListener('click', triggerAutoplay);
-        document.addEventListener('touchstart', triggerAutoplay);
-        document.addEventListener('scroll', triggerAutoplay);
-
-        audioBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (music.paused) {
-                music.play();
-                audioBtn.textContent = "🎵";
-            } else {
-                music.pause();
-                audioBtn.textContent = "🔇";
-            }
-        });
-
-        // --- LOGIK COUNTDOWN TIMER ---
-        const weddingDate = new Date("Dec 31, 2026 00:00:00").getTime();
-
-        const timer = setInterval(function() {
+        const timerInterval = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
@@ -397,20 +484,32 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
             if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
+                clearInterval(timerInterval);
+                document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:#F1C40F; font-weight:bold; letter-spacing:1px;'>The Auspicious Ceremony has Begun!</p>";
             }
         }, 1000);
-    </script>
 
+        // MUSIC INTERACTION TOGGLE
+        function toggleMusic() {
+            const music = document.getElementById("weddingMusic");
+            const btn = document.getElementById("musicBtn");
+            
+            if (music.paused) {
+                music.play();
+                btn.classList.add("playing");
+                btn.innerHTML = "⏸"; // Change icon to Pause symbol
+            } else {
+                music.pause();
+                btn.classList.remove("playing");
+                btn.innerHTML = "♫"; // Change icon back to Music symbol
+            }
+        }
+    </script>
 </body>
 </html>
