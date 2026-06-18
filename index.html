@@ -251,265 +251,64 @@
         }
 
         .event-card:hover .event-img {
-            opacity: 0.85;
-        }
-
-        .event-content {
-            padding: 35px;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .event-content h3 {
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(241, 196, 15, 0.3);
-            padding-bottom: 15px;
-            letter-spacing: 1px;
+            opacity: 1;
         }
 
         .event-details {
-            margin-bottom: 30px;
-            font-size: 1rem;
-            line-height: 1.9;
-            color: var(--text-light);
+            padding: 25px;
+            text-align: center;
         }
 
-        .event-details strong {
+        .event-details h3 {
             color: var(--secondary-color);
-            font-weight: 500;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
         }
 
-        /* --- AUDIO PLAYER FLOATING BUTTON --- */
+        /* --- AUDIO PLAYER BUTTON CONTROLS --- */
         .audio-control {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--secondary-color);
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--secondary-color);
             color: #120205;
-            width: 55px;
-            height: 55px;
+            border: none;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.4rem;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            z-index: 999;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border: 2px solid #120205;
-        }
-
-        .audio-control:hover {
-            transform: scale(1.1);
-        }
-
-        .audio-control.playing {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(241, 196, 15, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #090103;
-            color: var(--text-muted);
-            text-align: center;
-            padding: 50px 20px;
-            font-size: 0.95rem;
-            border-top: 1px solid rgba(241, 196, 15, 0.2);
-            margin-top: 80px;
-            letter-spacing: 1px;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .countdown-container {
-                gap: 10px;
-            }
-            .countdown-box {
-                min-width: 75px;
-                padding: 12px;
-            }
-            .countdown-box span {
-                font-size: 1.9rem;
-            }
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-            .audio-control {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- MUSIC AUDIO ELEMENT -->
-    <!-- You can change this link to your own background track URL if needed -->
-    <audio id="weddingMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- ELEMEN AUDIO (Muzik Latar Belakang) -->
+    <!-- Sila gantikan URL lagu di bawah dengan pautan lagu perkahwinan pilihan anda jika ada -->
+    <audio id="wedding-music" loop autoplay>
+        <source src="https://soundhelix.com" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
-    <!-- FLOATING MUSIC BUTTON -->
-    <div class="audio-control" id="musicBtn" onclick="toggleMusic()">♫</div>
+    <!-- Butang Kawalan Muzik Manual (Supaya tetamu boleh tutup/buka sendiri) -->
+    <button class="audio-control" id="audio-toggle">🎵</button>
 
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-border">
-            <h3>Welcome to our Celebration</h3>
-            <h1>Nagen &amp; Kuga</h1>
-            <p>We invite you to share in our joy as we celebrate the sacred beginning of our life together.</p>
-            <a href="#events" class="btn">Auspicious Schedule</a>
+            <h3>The Wedding Invitation</h3>
+            <h1>Nagen & Kuga</h1>
+            <p>Together with their families, invite you to share in their joy as they celebrate their marriage.</p>
+            <a href="#events" class="btn">View Events</a>
         </div>
     </section>
 
     <!-- COUNTDOWN SECTION -->
-    <div class="countdown-section">
-        <h2>Counting Down to Shubh Muhurtham</h2>
-        <div class="countdown-container" id="countdown">
-            <div class="countdown-box">
-                <span id="days">00</span>
-                <label>Days</label>
-            </div>
-            <div class="countdown-box">
-                <span id="hours">00</span>
-                <label>Hours</label>
-            </div>
-            <div class="countdown-box">
-                <span id="minutes">00</span>
-                <label>Minutes</label>
-            </div>
-            <div class="countdown-box">
-                <span id="seconds">00</span>
-                <label>Seconds</label>
-            </div>
-        </div>
-    </div>
-
-    <!-- EVENTS SECTION -->
-    <section class="container" id="events">
-        <h2 class="section-title">Ceremonies & Events</h2>
-        <div class="section-subtitle">Groom's Side Invitation</div>
-        
-        <div class="events-grid">
-            <!-- 1ST NALUNGU -->
-            <div class="event-card">
-                <!-- Indian Wedding Celebration Ritual Image -->
-                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=600&auto=format&fit=crop" alt="Indian Wedding Setup" class="event-img">
-                <div class="event-content">
-                    <div>
-                        <h3>1st Nalungu</h3>
-                        <div class="event-details">
-                            <p style="color: var(--secondary-color); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">with Mukurthakaal</p>
-                            <p><strong>Date:</strong> Friday, 3rd July 2026</p>
-                            <p><strong>Time:</strong> 5:30 PM Onwards</p>
-                            <p><strong>Venue:</strong> Groom's Residence,<br>77, Taman Permai, Jalan Kurau 2,<br>70200 Seremban, Negeri Sembilan.</p>
-                        </div>
-                    </div>
-                    <a href="https://maps.google.com/?q=77,+Taman+Permai,+Jalan+Kurau+2,+Seremban" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">Get Directions</a>
-                </div>
-            </div>
-
-            <!-- 2ND DAY NALUNGU -->
-            <div class="event-card">
-                <!-- Traditional Indian Brass Lamp Decor Image -->
-                <img src="https://images.unsplash.com/photo-1545232979-8bf34eb9757b?q=80&w=600&auto=format&fit=crop" alt="Indian Traditional Decor" class="event-img">
-                <div class="event-content">
-                    <div>
-                        <h3>2nd Day Nalungu</h3>
-                        <div class="event-details">
-                            <p style="color: transparent; font-weight: 500; margin-bottom: 12px; text-transform: uppercase;">Placeholder</p>
-                            <p><strong>Date:</strong> Saturday, 4th July 2026</p>
-                            <p><strong>Time:</strong> 4:30 PM Onwards</p>
-                            <p><strong>Venue:</strong> Groom's Residence,<br>77, Taman Permai, Jalan Kurau 2,<br>70200 Seremban, Negeri Sembilan.</p>
-                        </div>
-                    </div>
-                    <a href="https://maps.google.com/?q=77,+Taman+Permai,+Jalan+Kurau+2,+Seremban" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">Get Directions</a>
-                </div>
-            </div>
-
-            <!-- WEDDING CEREMONY (MUHURTHAM) -->
-            <div class="event-card">
-                <!-- Indian Wedding Garlands / Flower Mandap Design -->
-                <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=600&auto=format&fit=crop" alt="Indian Mandap Ceremony" class="event-img">
-                <div class="event-content">
-                    <div>
-                        <h3>The Wedding</h3>
-                        <div class="event-details">
-                            <p style="color: var(--secondary-color); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Muhurtham</p>
-                            <p><strong>Date:</strong> Sunday, 5th July 2026</p>
-                            <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
-                            <p><strong>Venue:</strong> Arulmigu Sri Muthu Mariamman Temple,<br>Taman Bukit Kepayang 1,<br>70200 Seremban, Negeri Sembilan.</p>
-                        </div>
-                    </div>
-                    <a href="https://maps.google.com/?q=Arulmigu+Sri+Muthu+Mariamman+Temple+Taman+Bukit+Kepayang+Seremban" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">View Temple Location</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>May all things be auspicious. &copy; 2026 Nagen &amp; Kuga's Wedding.</p>
-    </footer>
-
-    <!-- JAVASCRIPT -->
-    <script>
-        // COUNTDOWN TIMER TARGET (Wedding Day: July 5th, 2026 at 10:00 AM)
-        const weddingDate = new Date("Jul 5, 2026 10:00:00").getTime();
-
-        const timerInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(timerInterval);
-                document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:#F1C40F; font-weight:bold; letter-spacing:1px;'>The Auspicious Ceremony has Begun!</p>";
-            }
-        }, 1000);
-
-        // MUSIC INTERACTION TOGGLE
-        function toggleMusic() {
-            const music = document.getElementById("weddingMusic");
-            const btn = document.getElementById("musicBtn");
-            
-            if (music.paused) {
-                music.play();
-                btn.classList.add("playing");
-                btn.innerHTML = "⏸"; // Change icon to Pause symbol
-            } else {
-                music.pause();
-                btn.classList.remove("playing");
-                btn.innerHTML = "♫"; // Change icon back to Music symbol
-            }
-        }
-    </script>
-</body>
-</html>
+    <section class="countdown-section">
+        <h2>The Countdown Begins</h2>
+        <div class="countdown-container">
