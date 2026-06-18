@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation | Nagen & Kuga</title>
     <!-- Google Fonts for Elegant Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         /* --- BASE STYLES & AUSPICIOUS INDIAN TRADITIONAL THEME --- */
         :root {
-            --bg-dark: #120205; /* Sacred Deep Maroon / Shubh Sindoor Red Black */
+            --bg-dark: #120205; /* Sacred Deep Maroon */
             --bg-card: #1c050a; /* Rich Maroon-Onyx Card Background */
-            --secondary-color: #F1C40F; /* Auspicious Deep Yellow Gold Accent */
+            --secondary-color: #F1C40F; /* Auspicious Yellow Gold Accent */
             --text-light: #fefcf5; /* Warm Ivory Text */
             --text-muted: #c7b3b6;
             --border-gold: rgba(241, 196, 15, 0.4);
@@ -47,9 +47,8 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            /* Grand Indian Wedding Lights/Mandap Decor Background Asset */
             background: linear-gradient(rgba(18, 2, 5, 0.8), rgba(18, 2, 5, 0.95)), 
-                        url('https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+                        url('https://unsplash.com') center/cover no-repeat;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -72,7 +71,6 @@
             position: relative;
         }
 
-        /* Clean, Elegant Ornamental Corner Cornering Line Art Styles instead of symbols */
         .hero-border::before, .hero-border::after {
             content: '';
             position: absolute;
@@ -288,14 +286,13 @@
 </head>
 <body>
 
-    <!-- ELEMEN AUDIO (Muzik Latar Belakang) -->
-    <!-- Sila gantikan URL lagu di bawah dengan pautan lagu perkahwinan pilihan anda jika ada -->
+    <!-- ELEMEN AUDIO -->
     <audio id="wedding-music" loop autoplay>
         <source src="https://soundhelix.com" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Butang Kawalan Muzik Manual (Supaya tetamu boleh tutup/buka sendiri) -->
+    <!-- Butang Kawalan Muzik Manual -->
     <button class="audio-control" id="audio-toggle">🎵</button>
 
     <!-- HERO SECTION -->
@@ -312,3 +309,108 @@
     <section class="countdown-section">
         <h2>The Countdown Begins</h2>
         <div class="countdown-container">
+            <div class="countdown-box">
+                <span id="days">00</span>
+                <label>Days</label>
+            </div>
+            <div class="countdown-box">
+                <span id="hours">00</span>
+                <label>Hours</label>
+            </div>
+            <div class="countdown-box">
+<!-- EVENTS SECTION -->
+    <section class="container" id="events">
+        <h2 class="section-title">Wedding Events</h2>
+        <p class="section-subtitle">Join us for the celebrations</p>
+
+        <div class="events-grid">
+            <!-- Kad 1: Muhurthakaal -->
+            <div class="event-card">
+                <img src="https://unsplash.com" alt="Muhurthakaal Ceremony" class="event-img">
+                <div class="event-details">
+                    <h3>Muhurthakaal</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Traditional auspicious beginning ceremony to bless the wedding site and preparations.</p>
+                </div>
+            </div>
+
+            <!-- Kad 2: Seer Thathu -->
+            <div class="event-card">
+                <img src="https://unsplash.com" alt="Seer Thathu Ceremony" class="event-img">
+                <div class="event-details">
+                    <h3>Seer Thathu</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Presentation of auspicious gifts, sweets, and ceremonial plates from the family.</p>
+                </div>
+            </div>
+
+            <!-- Kad 3: Indian Wedding -->
+            <div class="event-card">
+                <img src="https://unsplash.com" alt="Indian Wedding Ceremony" class="event-img">
+                <div class="event-details">
+                    <h3>Indian Wedding</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">The grand traditional marriage rituals, Mangalyam ceremony, and exchange of garlands.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT FOR AUDIO AUTOPLAY & COUNTDOWN -->
+    <script>
+        // --- LOGIK AUDIO (AUTOPLAY) ---
+        const music = document.getElementById('wedding-music');
+        const audioBtn = document.getElementById('audio-toggle');
+
+        function triggerAutoplay() {
+            music.play().then(() => {
+                audioBtn.textContent = "🎵";
+                document.removeEventListener('click', triggerAutoplay);
+                document.removeEventListener('touchstart', triggerAutoplay);
+                document.removeEventListener('scroll', triggerAutoplay);
+            }).catch(error => {
+                console.log("Autoplay blocked. Waiting for interaction.");
+            });
+        }
+
+        document.addEventListener('click', triggerAutoplay);
+        document.addEventListener('touchstart', triggerAutoplay);
+        document.addEventListener('scroll', triggerAutoplay);
+
+        audioBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (music.paused) {
+                music.play();
+                audioBtn.textContent = "🎵";
+            } else {
+                music.pause();
+                audioBtn.textContent = "🔇";
+            }
+        });
+
+        // --- LOGIK COUNTDOWN TIMER ---
+        const weddingDate = new Date("Dec 31, 2026 00:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
